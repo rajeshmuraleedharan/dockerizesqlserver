@@ -1,0 +1,20 @@
+FROM microsoft/mssql-server-linux  AS base
+
+ENV ACCEPT_EULA=Y
+ENV SA_PASSWORD=January2018
+ENV MSSQL_PID=Express
+
+WORKDIR /src
+
+COPY sqlserverdemo_Create.sql ./
+
+COPY TestData/*.sql ./testdata
+
+COPY setup-database.sh ./
+COPY entrypoint.sh ./ 
+
+# Grant permissions for the setup-database and entrypoint shell scripts to be executable
+RUN chmod +x ./setup-database.sh
+RUN chmod +x ./entrypoint.sh
+
+CMD bash ./entrypoint.sh

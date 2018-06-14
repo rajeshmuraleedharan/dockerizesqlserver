@@ -16,6 +16,6 @@ WHERE not exists (select 1 from dbo.NationalityMaster where id = 1)
 GO
 
 insert into dbo.NationalityMaster (id,Country)
-SELECT 1, N'Indian'
-WHERE not exists (select 1 from dbo.NationalityMaster where id = 1)
+SELECT 2, N'Indian'
+WHERE not exists (select 1 from dbo.NationalityMaster where id = 2)
 GO
